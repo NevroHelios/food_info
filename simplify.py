@@ -16,7 +16,11 @@ def nutri_simplify(container, facts):
     elif facts == container["nutriscore_data"]:
         dct = {}
         for key in facts:
-            if len(key.split('_')) != 1 and key != 'grade':
-                dct[key] = facts[key]
+            if len(key.split('_')) != 1:
+                if key.split('_')[0] == 'is':
+                    dct[key.split('_')[1]] = facts[key]
+                else:
+                    dct[key] = facts[key]
+        dct['grade'] = facts['grade']    
         container["nutriscore_data"] = dct
     
