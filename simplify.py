@@ -11,6 +11,8 @@ def nutri_simplify(container, facts):
                 dct[perv] = str(f"{dct[perv]} ") + facts[val] 
         
         dct['energy'] = str(round(int(dct['energy'].split()[0]) * 0.239006)) + " Kcal"
+        
+        dct = {key.title() : val for key, val in dct.items()}
         container['nutriments'] = dct
         
     elif facts == container["nutriscore_data"]:
@@ -20,7 +22,8 @@ def nutri_simplify(container, facts):
                 if key.split('_')[0] == 'is':
                     dct[key.split('_')[1]] = facts[key]
                 else:
-                    dct[key] = facts[key]
-        dct['grade'] = facts['grade']    
+                    dct[' '.join(key.split('_'))] = facts[key]
+        dct['grade'] = facts['grade'] 
+        dct = {key.title() : val for key, val in dct.items()}
         container["nutriscore_data"] = dct
     
