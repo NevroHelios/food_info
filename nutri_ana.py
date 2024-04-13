@@ -1,3 +1,5 @@
+# Edamam Nutrition Analysis
+
 import requests
 
 url = "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data"
@@ -14,4 +16,6 @@ def get_labels(ingr, url=url, headers=headers):
                    "nutrition-type" : "cooking"}
     response = requests.get(url, headers=headers, params=querystring)
     response =  response.json()
-    return response['healthLabels']
+    labels = response['healthLabels']
+    labels = [" ".join(label.split('_') for label in labels)]
+    return labels
