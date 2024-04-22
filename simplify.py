@@ -12,6 +12,9 @@ def nutri_simplify(container, facts):
         
         dct['energy'] = str(round(int(dct['energy'].split()[0]) * 0.239006)) + " Kcal"
         
+        for nutriment in nutriment_list:
+            dct[nutriment] = dct.get(nutriment, '0')
+        
         dct = {key.title() : val for key, val in dct.items()}
         container['nutriments'] = dct
         
@@ -27,3 +30,5 @@ def nutri_simplify(container, facts):
         dct = {key.title() : val for key, val in dct.items()}
         container["nutriscore_data"] = dct
     
+    
+nutriment_list = ["biotin",'bcaa','potassium', 'inositol', 'chloride', 'proteins', 'carbohydrates', 'galactose', 'creatine', 'oligosaccharide', 'glucose', 'erythritol', 'biotin', 'energy', 'fiber', 'water', 'taurine', 'starch', 'magnesium', 'molybdenum', 'fat', 'acidity', 'folates', 'carnitine', 'fructose', 'iron', 'choline', 'silica', 'iodine', 'sodium', 'manganese', 'cholesterol', 'casein', 'maltose', 'bcaa', 'calcium', 'alcohol', 'selenium', 'polydextrose', 'sulphate', 'phosphorus', 'caffeine', 'salt', 'copper', 'allulose', 'maltodextrins', 'cocoa', 'zinc', 'sucrose', 'chlorophyl', 'chromium', 'lactose', 'sugars', 'molybdenum', 'polydextrose']
