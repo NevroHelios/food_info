@@ -17,5 +17,7 @@ def get_labels(ingr, url=url, headers=headers):
     response = requests.get(url, headers=headers, params=querystring)
     response =  response.json()
     labels = response['healthLabels']
-    labels = [" ".join(label.split('_') for label in labels)]
+    
+    labels = [' '.join(label.split('_')) for label in labels]
+    
     return labels
