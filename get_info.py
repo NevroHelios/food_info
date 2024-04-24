@@ -15,7 +15,7 @@ def get_product_info():
     
     
     get_product_info = api.product.get(code, fields=["code", "product_name", "image_url", "brands", "nutriscore_data", "nutriments", "ingredients_text_en", "nutrient_levels", "nutri_score"])
-    print(get_product_info['nutrient_levels'])
+    
     product_info = {
     "brands": "-",
     "code": "--",
