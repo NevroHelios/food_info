@@ -1,7 +1,7 @@
 import re
 
 def nutri_simplify(container, facts):
-    if facts == container['nutriments']:
+    if container['nutriments'] and facts == container['nutriments']:
         dct= {}
         for val in facts:
             if len(re.split(r"[_-]", val)) == 1:
@@ -19,7 +19,7 @@ def nutri_simplify(container, facts):
         dct = {key.title() : val for key, val in dct.items()}
         container['nutriments'] = nutri_vals
         
-    elif facts == container["nutriscore_data"]:
+    elif container["nutriscore_data"] and facts == container["nutriscore_data"]:
         dct = {}
         for key in facts:
             if len(key.split('_')) != 1:

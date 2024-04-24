@@ -12,12 +12,16 @@ headers = {
 
 def get_labels(ingr, url=url, headers=headers):
     
-    querystring = {"ingr" : ingr, 
-                   "nutrition-type" : "cooking"}
-    response = requests.get(url, headers=headers, params=querystring)
-    response =  response.json()
-    labels = response['healthLabels']
+    if ingr:
+        
+        querystring = {"ingr" : ingr, 
+                    "nutrition-type" : "cooking"}
+        response = requests.get(url, headers=headers, params=querystring)
+        response =  response.json()
+        labels = response['healthLabels']
+        
+        labels = [' '.join(label.split('_')) for label in labels]
+        
+        return labels
     
-    labels = [' '.join(label.split('_')) for label in labels]
-    
-    return labels
+    return False
