@@ -10,7 +10,12 @@ def get_product_info():
     data = request.get_json(force=True)
     code = data['code']
     api = openfoodfacts.API(user_agent="MyAwesomeApp/1.0")
+    
+    
     product_info = api.product.get(code, fields=["code", "product_name", "image_url", "brands", "nutriscore_data", "nutriments", "ingredients_text_en", "nutrient_levels", "nutri_score"])
+    
+    if product_info == None:
+        return jsonify({"product_name" : "NO INFO FOUND"})
     
     # simplify the the nutrients
     try:
