@@ -104,11 +104,12 @@ def get_product_info():
     except:
         pass
     
-    # if product_info['ingredients_text_en']:
-    #     try:
-    #         product_info['labels'] = get_labels("ingredients_text_en")
-    #     except:
-    #         pass
+    if product_info['ingredients_text_en']:
+        try:
+            product_info['labels'] = get_labels("ingredients_text_en")
+        except:
+            pass
+        
     # product_info['labels'] = [ "LOW_SUGAR", "VEGAN", "VEGETARIAN", "PESCATARIAN", "PALEO", "SPECIFIC_CARBS", "DAIRY_FREE", "GLUTEN_FREE", "WHEAT_FREE", "EGG_FREE", "MILK_FREE", "PEANUT_FREE", "TREE_NUT_FREE", "SOY_FREE", "FISH_FREE", "SHELLFISH_FREE", "PORK_FREE", "RED_MEAT_FREE", "CRUSTACEAN_FREE", "CELERY_FREE", "MUSTARD_FREE", "SESAME_FREE", "LUPINE_FREE", "MOLLUSK_FREE", "ALCOHOL_FREE", "NO_OIL_ADDED", "NO_SUGAR_ADDED", "FODMAP_FREE", "KOSHER"]
     
     try:
