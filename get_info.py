@@ -21,7 +21,7 @@ def get_product_info():
         product_info = {
     "brands": "-",
     "code": "--",
-    "image_url": "--",
+    "image_url": "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "labels": [
         'Not Found'
     ],
@@ -93,12 +93,12 @@ def get_product_info():
     try:
         nutri_simplify(product_info, product_info['nutriments'])
     except:
-        product_info['nutriments'] = 'Error in Nutrition Information'
+        pass
     
     try:
         nutri_simplify(product_info, product_info['nutriscore_data'])
     except:
-        product_info['nutriscore_data'] = 'Error in  Nutri-Score Data'
+        pass
     
     try:
         product_info['labels'] = get_labels("ingredients_text_en")
