@@ -2,10 +2,10 @@ from flask import Flask, request, jsonify
 import openfoodfacts
 from simplify import nutri_simplify
 from nutri_ana import get_labels
-
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/product_info', methods=['POST'])
 def get_product_info():
