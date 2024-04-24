@@ -15,10 +15,8 @@ def get_product_info():
     
     
     get_product_info = api.product.get(code, fields=["code", "product_name", "image_url", "brands", "nutriscore_data", "nutriments", "ingredients_text_en", "nutrient_levels", "nutri_score"])
-    
-    if get_product_info == None:
-        # return jsonify({"product_name" : "NO INFO FOUND"})
-        product_info = {
+    print(get_product_info['nutrient_levels'])
+    product_info = {
     "brands": "-",
     "code": "--",
     "image_url": "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -85,9 +83,15 @@ def get_product_info():
     },
     "product_name": "-"
 }
+    
+    if get_product_info == None:
+        # return jsonify({"product_name" : "NO INFO FOUND"})
         return jsonify(product_info) 
     else:
-        product_info = get_product_info
+        get_product_info['labels'] = ['Not Found']
+        for key in get_product_info:
+            if get_product_info[key]:
+                product_info[key] = get_product_info[key]
     
     # simplify the the nutrients
     try:
@@ -100,10 +104,11 @@ def get_product_info():
     except:
         pass
     
-    try:
-        product_info['labels'] = get_labels("ingredients_text_en")
-    except:
-        pass
+    # if product_info['ingredients_text_en']:
+    #     try:
+    #         product_info['labels'] = get_labels("ingredients_text_en")
+    #     except:
+    #         pass
     # product_info['labels'] = [ "LOW_SUGAR", "VEGAN", "VEGETARIAN", "PESCATARIAN", "PALEO", "SPECIFIC_CARBS", "DAIRY_FREE", "GLUTEN_FREE", "WHEAT_FREE", "EGG_FREE", "MILK_FREE", "PEANUT_FREE", "TREE_NUT_FREE", "SOY_FREE", "FISH_FREE", "SHELLFISH_FREE", "PORK_FREE", "RED_MEAT_FREE", "CRUSTACEAN_FREE", "CELERY_FREE", "MUSTARD_FREE", "SESAME_FREE", "LUPINE_FREE", "MOLLUSK_FREE", "ALCOHOL_FREE", "NO_OIL_ADDED", "NO_SUGAR_ADDED", "FODMAP_FREE", "KOSHER"]
     
     try:
